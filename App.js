@@ -1,20 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { TailwindProvider } from "tailwind-rn";
+import utilities from "./tailwind.json";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
+import HomeScreen from "./component/Homescreen";
+import Onboarding1 from "./component/Onboarding/Onboarding1";
+import Onboarding2 from "./component/Onboarding/Onboarding2";
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <TailwindProvider utilities={utilities}>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ title: "home" }}
+        />
+        <Stack.Screen
+          name="Onbaording1"
+          component={Onboarding1}
+          options={{ title: "onboardng1" }}
+        />
+        <Stack.Screen
+          name="Onbaording2"
+          component={Onboarding2}
+          options={{ title: "onboardng2" }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+    </TailwindProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
