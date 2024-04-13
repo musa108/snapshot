@@ -1,7 +1,5 @@
 import { StatusBar } from "expo-status-bar";
 import { Button, ImageBackground, Text, View } from "react-native";
-import { tw } from "nativewind";
-import { columns } from "tailwind-rn/unsupported-core-plugins";
 
 export default function Onboarding1({ navigation }) {
   return (
@@ -20,6 +18,7 @@ export default function Onboarding1({ navigation }) {
             gap: "16px",
             marginLeft: 18,
             marginRight: 18,
+            marginTop: 500,
           }}
         >
           <Text
