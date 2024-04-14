@@ -1,25 +1,25 @@
-import { TailwindProvider } from "tailwind-rn";
-import utilities from "./tailwind.json";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import HomeScreen from "./component/Homescreen";
+import Splash from "./component/Splash";
 import Onboarding1 from "./component/Onboarding/Onboarding1";
 import Onboarding2 from "./component/Onboarding/Onboarding2";
 import Onboarding3 from "./component/Onboarding/Onboarding3";
 import LoginPage from "./page/LoginPage"
+import SignupPage from './page/SignupPage'
+import Home from './page/Home'
 
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <TailwindProvider utilities={utilities}>
+  
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{ title: "home" }}
+          name="Splash"
+          component={Splash}
+          options={{ title: "Splash" }}
         />
         <Stack.Screen
           name="Onbaording1"
@@ -41,8 +41,17 @@ export default function App() {
           component={LoginPage}
           options={{ title: "LoginPage" }}
         />
+        <Stack.Screen
+          name="SignupPage"
+          component={SignupPage}
+          options={{ title: "SignupPage" }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{ title: "Home" }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
-    </TailwindProvider>
   );
 }

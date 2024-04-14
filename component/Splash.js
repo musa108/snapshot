@@ -1,9 +1,8 @@
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
-import { useTailwind } from "tailwind-rn";
 import { Image, Text, View } from "react-native";
 
-export default function Homescreen({ navigation }) {
+export default function Splash({ navigation }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigation.navigate("Onbaording1");
@@ -11,7 +10,6 @@ export default function Homescreen({ navigation }) {
 
     return () => clearTimeout(timer);
   }, []);
-  const tailwind = useTailwind();
   return (
     <View
       style={{
