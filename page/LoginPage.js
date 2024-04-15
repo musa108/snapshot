@@ -68,9 +68,11 @@ export default function LoginPage({ navigation }) {
           gap: 2,
         }}
       >
-        <Text style={{ fontSize: 20 }}>Don't Have an Account?</Text>
+        <Text style={{ fontSize: 20, color: "gray" }}>
+          Don't Have an Account?
+        </Text>
         <Text
-          style={{ fontSize: 20 }}
+          style={{ fontSize: 20, fontWeight:500 }}
           onPress={() => navigation.navigate("SignupPage")}
         >
           Sign Up
