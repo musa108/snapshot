@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import * as AppleAuthentication from 'expo-apple-authentication';
 import { Alert, StyleSheet, View } from "react-native";
 import { supabase } from "../lib/superbase";
 import { Button, Input, Text } from "react-native-elements";
@@ -26,6 +27,14 @@ export default function LoginPage({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <View>
+        <Text style={{ fontSize: 32, fontWeight: 600 }}>
+          Create Your Account
+        </Text>
+        <Text style={{ color: "gray", paddingTop: 10 }}>
+          Which part of country that you call home?
+        </Text>
+      </View>
       <View style={[styles.verticallySpaced, styles.mt20]}>
         <Input
           label="Email"
@@ -45,6 +54,32 @@ export default function LoginPage({ navigation }) {
           secureTextEntry={true}
           placeholder="Password"
           autoCapitalize="none"
+        />
+      </View>
+      <View>
+        <AppleAuthentication.AppleAuthenticationButton
+          buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
+          buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
+          cornerRadius={5}
+          style={styles.button}
+          onPress={async () => {
+            try {
+              const credential = await AppleAuthentication.signInAsync({
+                requestedScopes: [
+                  AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+                  AppleAuthentication.AppleAuthenticationScope.EMAIL,
+                ],
+              });
+              navigation.navigate("Home")
+              // signed in
+            } catch (e) {
+              if (e.code === "ERR_REQUEST_CANCELED") {
+                // handle that the user canceled the sign-in flow
+              } else {
+                // handle other errors
+              }
+            }
+          }}
         />
       </View>
       <View style={styles.verticallySpaced}>
@@ -89,5 +124,10 @@ const styles = StyleSheet.create({
   },
   mt20: {
     marginTop: 20,
+  },
+  button: {
+    width:'full',
+    height: 44,
+    marginVertical:10
   },
 });
