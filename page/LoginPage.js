@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Alert, StyleSheet, View } from "react-native";
+
+import * as AppleAuthentication from 'expo-apple-authentication'
 import { supabase } from "../lib/superbase";
 import { Button, Input, Text } from "react-native-elements";
 
@@ -77,6 +79,32 @@ export default function LoginPage({ navigation }) {
         >
           Sign Up
         </Text>
+      </View>
+      <View>
+        <AppleAuthentication.AppleAuthenticationButton
+          buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
+          buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
+          cornerRadius={5}
+          style={styles.button}
+          onPress={async () => {
+            try {
+              const credential = await AppleAuthentication.signInAsync({
+                requestedScopes: [
+                  AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+                  AppleAuthentication.AppleAuthenticationScope.EMAIL,
+                ],
+              });
+              navigation.navigate("Home")
+              // signed in
+            } catch (e) {
+              if (e.code === "ERR_REQUEST_CANCELED") {
+                // handle that the user canceled the sign-in flow
+              } else {
+                // handle other errors
+              }
+            }
+          }}
+        />
       </View>
     </View>
   );
