@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Alert, StyleSheet, View } from "react-native";
 
-import * as AppleAuthentication from 'expo-apple-authentication'
+import * as AppleAuthentication from "expo-apple-authentication";
 import { supabase } from "../lib/superbase";
 import { Button, Input, Text } from "react-native-elements";
 
@@ -74,10 +74,10 @@ export default function LoginPage({ navigation }) {
           Don't Have an Account?
         </Text>
         <Text
-          style={{ fontSize: 20, fontWeight:500 }}
+          style={{ fontSize: 20, fontWeight: 500 }}
           onPress={() => navigation.navigate("SignupPage")}
         >
-          Sign Up
+          Sign In
         </Text>
       </View>
       <View>
@@ -94,7 +94,7 @@ export default function LoginPage({ navigation }) {
                   AppleAuthentication.AppleAuthenticationScope.EMAIL,
                 ],
               });
-              navigation.navigate("Home")
+              navigation.navigate("Home");
               // signed in
             } catch (e) {
               if (e.code === "ERR_REQUEST_CANCELED") {

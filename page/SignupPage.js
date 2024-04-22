@@ -105,7 +105,7 @@ export default function LoginPage({ navigation }) {
           style={{ fontSize: 20, fontWeight: 500 }}
           onPress={() => navigation.navigate("LoginPage")}
         >
-          Sign In
+          Sign Up
         </Text>
       </View>
     </View>
